@@ -60,4 +60,18 @@ def bfs(adj_matrix):
           if queue == []:
                break
           node = queue[0] # current_node = queue.front_peek()
-bfs(graph)
+
+
+## [ Dijkstra's Algorithm ]
+
+
+graph2 = [
+[0, 2, 4, None, None, None],
+[None, 0, 1, 4, None, None],
+[None, None, 0, None, 3, None],
+[None, None, None, 0, None, 1],
+[None, None, None, 2, 0, 5],
+[None, None, None, None, None, None]]
+
+def dijkstra(matrix):
+     pass
