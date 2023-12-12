@@ -157,5 +157,5 @@ def patternd(n):
 def patterne(n):
      for i in range(n//2 +1):
           print(" "*i + "*"*(n-i*2))
-     for i in range(n//2):
-          print(" "*(n-i*2) + "*"*i)
+     for i in range(3, n+1, 2):
+          print(" "*int(((n-i)/2)) + "*"*i)

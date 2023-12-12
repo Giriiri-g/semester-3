@@ -1,7 +1,7 @@
 ## [ Graph Traversal ]
 
 
-
+# Adjacency Matrix -> Input
 graph = [
 [0, 1, 0, 1, 1, 0, 0],
 [1, 0, 1, 0, 1, 0, 0],
@@ -61,6 +61,12 @@ def bfs(adj_matrix):
                break
           node = queue[0] # current_node = queue.front_peek()
 
+
+bfs(graph)
+
+
+print("\n\n")
+dfs(graph)
 
 ## [ Dijkstra's Algorithm ]
 
