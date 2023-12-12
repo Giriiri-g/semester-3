@@ -60,4 +60,4 @@ def calculate_series_sum(x, n):
 ## [Question 6]
 
 def costcalc(product_cost, tax_rate=0.07, shipping_cost=5):
-     pass
+     return product_cost + tax_rate + shipping_cost
