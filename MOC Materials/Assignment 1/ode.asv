@@ -7,5 +7,5 @@ function ode()
 end
 
 function odedsolve()
-    syms = y(x);
+    
 end
