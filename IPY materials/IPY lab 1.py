@@ -46,11 +46,17 @@ def shipping_cost(weight, distance):
           cost += 10
      elif distance > 100:
           cost += 5
-     return f"The Total cost of the shipping is {cost}."
+     return f"The Total cost of the shipping is ${cost}."
 
 
 ## [ Question 4 ]
 
+name = input("Enter your name: ") # String Input
+age = int(input("Enter your age: "))# Integer Input
+marks = float(input("Enter your marks: ")) # Float Input
+print("The name is:", name)
+print("The age is:", age)
+print("The marks is:", marks)
 
 
 ## [ Question 5 ]
@@ -63,7 +69,6 @@ def convtime(sec):
      return f"{hour}:{min_}:{sec}"
 
 ## [ Question 6 ]
-
 
 
 ## [ Question 7 ]
@@ -99,7 +104,7 @@ def ispal(num):
 def ispal2(num):
      num = str(num)
      n = len(num)
-     for i in range(n//2)
+     for i in range(n//2):
           if num[i] != num[n-i-1]:
                return False
      return True
@@ -159,3 +164,30 @@ def patterne(n):
           print(" "*i + "*"*(n-i*2))
      for i in range(3, n+1, 2):
           print(" "*int(((n-i)/2)) + "*"*i)
+
+
+## [ Question 13 ]
+
+def pattern1(n):
+     for i in range(1, n+1):
+          for j in range(1, i+1):
+               print(j, end="")
+          print("")
+
+
+def pattern2(n):
+     for i in range(1, n+1):
+          print(" "*(n-i), end="")
+          for j in range(1, i+1):
+               print(j, end="")
+          print("")
+
+
+def pattern3(n):
+     for i in range(1, n+1):
+          print(" "*(n-i), end="")
+          for j in range(1, i+1):
+               print(j, end="")
+          for j in range(i, 0, -1):
+               print(j, end="")
+          print("")
