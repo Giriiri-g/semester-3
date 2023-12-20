@@ -81,10 +81,11 @@ def Dijkstra(Graph, source):
      Node=source
      while dist!={}:
           for vertex in Graph.child(Node):
-
+               if vertex in min_dist:
+                    continue
                if min_dist[Node] + Graph.Edge(Node, vertex) < dist[vertex]:
                     dist[vertex] = min_dist[Node] + Graph.Edge(Node, vertex)
-          Node = min(dist)
+          Node = min(dist, key= lambda k: dist[k])
           min_dist[Node] = dist.pop(Node)
 
 
