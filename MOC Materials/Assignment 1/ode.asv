@@ -8,8 +8,8 @@ function ode()
 end
 
 function odedsolve()
-    syms y(x) x;
-    diffeq = diff(y) == ode1(x, y);
+    syms y(x);
+    diffeq = diff(y) == (y.^2 - x.^2)/(x*y);
     ivp = y(1) == 1;
     soln = dsolve(diffeq, ivp);
     x = 1:0.005:1.5;
@@ -20,12 +20,6 @@ end
 function odeode45()
     xrange = [1 1.5];
     y0 = 1;
-    [x, y] = ode45(@ode1, xrange, y0);
-    hold on; plot(x, y, )
+    [x, y] = ode45()
 
-end
-
-
-function dydx = ode1(x, y)
-    dydx = (y.^2 - x.^2)/(x*y);
 end
