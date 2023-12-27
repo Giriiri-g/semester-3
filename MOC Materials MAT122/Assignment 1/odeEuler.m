@@ -21,6 +21,10 @@ function dydx = ode1(x, y)
     dydx = (y.^2 - x.^2)/(x*y);
 end
 
+function dydx = ode2(x, y)
+    dydx = (y+ cos(y) - cos(x))/(x*(sin(y)-1));
+end
+
 function plotsoln()
     clear all; clc; close all
 
