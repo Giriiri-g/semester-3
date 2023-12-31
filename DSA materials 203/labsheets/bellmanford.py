@@ -9,21 +9,31 @@ class Graph:
                return self.adj_dic[u][v]
           return None
 
-     def child(self, s):
-          return self.adj_dic[s]
+     def child(self, parent):
+          return list(self.adj_dic[parent])
 
      def vertices(self):
-          return list(self.adj_dic.keys())
+          return list(self.adj_dic)
+
+     def Edges(self):
+          edges = []
+          for i in self.vertices():
+               for j in self.child(i):
+                    edges.append((i, j))
+          return edges
+
+     def PathWeight(self, u, v):
+          return self.adj_dic[u][v]
 
 
 
 dic = {
-'A':{'B':2, 'C':2, 'D':1},
-'B':{'D':2},
-'C':{'E':1, 'D':3},
-'D':{'E':2},
-'E':{},
-'S':{'A':1, 'B':5},
+'A':{'B':6, 'C':4, 'D':5},
+'B':{'E':-1},
+'C':{'E':3, 'B':-2},
+'D':{'E':-2, 'F':-1},
+'E':{'F':3},
+'F':{},
 }
 
 graph = Graph(dic)
@@ -32,18 +42,23 @@ graph = Graph(dic)
 
 ## [ Bellman-Ford ]
 
-def Bellman(graph, source):
-     min_dist={source:0}
-     dist = {}
+def Bellman(Graph, source):
+     dist={}
      for vertex in Graph.vertices():
           dist[vertex] = float('inf')
-     dist.pop(source)
+     dist[source] = 0
 
-     iter_ = len(graph.vertices())
+     iter_ = len(Graph.vertices())
+     
 
-     vertices=[]
+     for i in range(iter_-1):
+          dist_dup = dist
+          for path in Graph.Edges():
+               if dist[path[0]] + Graph.PathWeight(path[0], path[1]) < dist[path[1]]:
+                    dist[path[1]] = dist[path[0]] + Graph.PathWeight(path[0], path[1])
 
-     for i in range(1, iter_+1):
-          
 
-     return min_dist
+                    
+          if dist_dup == dist:
+               return dist
+     return dist
