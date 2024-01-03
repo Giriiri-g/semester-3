@@ -12,7 +12,6 @@ function [X, Y] = RKMethod(dydx, y0, xspan)
     Y(1) = y0;
     
     for i = 1:length(X)-1
-        % 
         k1 = 0.01 * dydx(X(i), Y(i));
         k2 = 0.01 * dydx(X(i) + 0.01/2, Y(i) + k1/2);
         k3 = 0.01 * dydx(X(i) + 0.01/2, Y(i) + k2/2);
