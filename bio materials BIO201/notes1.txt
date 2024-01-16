@@ -1,0 +1,142 @@
+biomolecules classification
+carbon based and silicon based life forms
+proteins
+amino acids and struc 
+primary structure
+secondary structure alpha helix beta pleated sheets
+tertiary struc
+quaternary struc multi polypeptide chains
+peptide bonds disulfide bonds
+N terminal and C terminal
+lipids
+glycerides fatty acids
+phospholipids eicosanoids
+carbohydrates
+monosacchrides glucose fructose galactose
+disacchrides sucrose lactose
+polysacchrides starch cellulose
+nucleic acids
+nucleotides is the base units of nucleic acids
+DNA RNA
+nucleotide = phosphate + pentose sugar + base
+nucleoside = pentose sugar + base
+purines -> double carbon rings 5c + 6c rings
+pyramidines -> single 6 carbon ring
+ribose deoxyribose
+sugar phosphate backbone
+phosphodiester linkage -> PO4 2- + Sugar -> provides the direction
+N-glycosidic bond -> Sugar + Base link
+Hydrogen bonds -> AT = 2, GC = 3
+enzymes -> catalysis process
+prokaryotic cell -> no nucleus memberane to sperate genetic materials, just float in the necleoid region, no mitochondria, single cell organisms
+eukaryotic cell
+cell membrane
+nucleus
+ribosome
+golgi apparatus
+ER
+SER -> lipid syntheisis
+RER -> protein syntheisis
+cytoplasm
+vacuoles
+centrioles
+lysosome
+mitochondria
+cytoskeleton
+neuclear envelope
+chromatin
+nucleoleuos
+nucleoplasm
+nuclear pores
+mitosis
+interphase
+G1 -> cell growth
+S -> dna replication
+G2 -> neccessary proteins and organelles are formed
+prophase -> chromatin changes into visible chromosomes, nuclear wall breaks down, pre spindle formation
+prometaphase -> mitotic spindles extend, 
+metaphase -> chromosomes align at equitorial plane, metaphase plate, spindle fibers attach to centromers of each chromosomes
+anaphase -> spindle fibers contract back to the opposite sides of the cell
+telophase -> chromosomes condenses back to chromatids, nuclear walls devolop, cytokinesis
+miosis
+genome
+IGR, repeated sequence, alleles, chromosome
+watson crick model
+chargaff rule
+quatity rule, matching rule
+anti parallel strands
+dna rna functions
+RNA splicing
+exons - the coding regions on the genes
+introns - the non coding regions in the genes with seperates the exon regions
+the inro codes are removed from the transcripted mRNA sequence which are the non coding sequences that seperates the exons
+mrna
+transports the rna spliced rna string to the ribosome on top of Rough Endoplasmic Reticulum
+trna
+contains the 3 anti codon nucleotide bases which are matched to the corresponding amino acids by a covalent bond
+rrna
+contains information about formation of ribosomes
+contains essential proteins which helps in the catalytic activity for protein syntheisis
+mrna terminals -> NCS non coding sequence
+5' cap = 7-methyl guanosie triphosphate
+3' cap = polyadenylate polymerase
+anti codon -> the 3 complementary nucleotide bases which are matched to the correseponding amino acids in the trna
+dna replication
+replication begins at the oric
+the helicase starts to unwind from the origin of replication,
+which provides access to the single stranded regions of the dna to the dna polymerase
+the dna is unwound into to strands -> leading strand 5' to 3', and lagging strand 3' to 5'
+these strands act as template strands on top of which the replication takes place
+dna polymerase requires a nucleic acid with a free 3' -OH bond which is provided by the primer sequence which helps initializing the dna replication process
+the primer sequence is a non coding RNA sequence provided by the RNA primase enzymes
+then the dna polymerase attaches the incoming 5' phosphate end of the deoxynucleoside triphosphate to the 3' -OH end resulting in the concomitant release of pyrophosphates
+the replication can only take place in the 5' to 3' direction, since only the 3' ends contain the free 3' -OH bonds for the dna polymerase to attach, while the 5' ends contains the phosphate groups on which the dna polymerase cant attach
+the function of dna polymerase is to ensure fidelity to dna syntheisis, repair damaged and mismatched nucleotides
+it also has 2 additional exonuclease functions
+5' - 3' exonuclease function is to remove the non coding sequence of the RNA primer sequence and provide correct nucleotides to attach
+3' - 5' exonuclease function is to repair the mismatched nucleotides which happens rarely and the dna polymerase catches it immediately to fix the mismatched nucleotides
+then another enzyme called ligase is used to fix any phosphodiester linkage breaks found in the sequence
+telomerase is a enzyme which adds the ending sequence to the end of the sequence
+on the lagging strand, the dna polymerase cant traverse in the 3'-5' direction
+so multiple primase enzymes adds multiple primers ahead of the template strand to which the dna polymerase can attach and adds small small segments of sequences of the range 20-200 base pairs which are called okazaki fragments.
+the dna polymerase's exonuclease again removes the RNA primer sequences and fixes the left of spaces and ligase bonds the phosphodiester linkages between the okazaki fragments
+transcription
+Initialization
+the coded start sequences are abled to easily identified by the help of some sequences called promoters
+and other sequences which provide catalytic enhancement to the proccess is called enhancers
+these promoters and enhancer help in initializing the transcription process
+unlike dna replication, which starts from 1 origin of replication, in RNA transcription the process concurrently happens at multiple start codons found in the dna strand
+the transcription only happens in one strand called template strand unlike dna replication which uses both strands
+the mRNA sequence is a complementary sequence of the template strand
+and an identical match to the non template strand which is called the coding strand
+elongation
+during the start of the elongation process, the rna polymerase attaches to start codon which is (adenine uracil guanine)
+it attaches to the free 3' -OH bond of the 7-methyl guanosine triphosphate and starts the transcription process
+the incoming 5'-phosphate group that is the alpha phosphate groung of the ribonucleotide triphosphate is attached to the 3'-OH bond by a phosphodiester linkage and resulting in a concomitant release of pyrophospates
+in the 3' opening of the RNA polymerase the dna strads are taken in as well as the incoming nucleotides
+inside the RNA polymerase the dna is unwound and mrna strand is transcripted and removed continously
+out of the 5' end of the RNA polymerase, the dna strands are rewound and coiled back and released and the mrna strand also comes out
+termination
+the nucleotide addition takes place until a stop termination sequence is reached in the template strands
+with the help of enzyme called telomerase
+following termination the RNA polymerase dissociates from the template strand
+
+the mrna is not immediately sent to the site of translation but some preproccessing happens -> undergo significant posttranscriptional processing
+called RNA splicing, which is The sequences encoded by the intronic DNA must be removed from the primary transcript prior to the RNAs being biologically active. The process of intron removal is called RNA splicing
+translation
+the rrna which contains robosomic proteins and information create robosomes which helps and catalyzes the protein syntheisis process
+The initiator tRNA is not used for incorporation of methionine into noninitiation locations in the rest of a protein
+The initiation of translation requires recognition of an (adenine-uracil-guanine) AUC codon
+There are three termination codons: UAG, UAA, and UGA
+codon table
+circular dna replication
+DNAA box
+9mer of oric is called the DNAA box
+viral vectors
+golden bug
+finding oric problem
+hidden message problem
+frequent words problem
+reverse complement problem
+pattern matching problem
+clump finding problem
