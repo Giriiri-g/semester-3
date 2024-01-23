@@ -53,47 +53,6 @@ dic = {
 
 graph = Graph(dic)
 
-# d = dict(sorted(Edges.items(), key=lambda item: item[1])) # to sort down the Edges dictionary in ascending order
-
-
-def Prims(graph, source):
-     spanTree = Graph()
-     spanTree.addVertices(source)
-     Leafs = [source]
-     Edges = []
-     pathCost = 0
-     while spanTree.vertices()!=graph.vertices():
-          availPaths = []
-          for i in Leafs:
-               children = graph.child(i)
-               for j in children:
-                    if j in Leafs:
-                         continue
-                    if {i, j} not in availPaths:
-                         availPaths.append({i, j})
-          paths = {tuple(i): graph.PathWeight(tuple(i)[0], tuple(i)[1]) for i in availPaths}
-          if paths == {}:
-               break
-          minPath = min(paths, key=lambda k: paths[k])
-          if minPath[0] in Leafs:
-               Leafs.append(minPath[1])
-          else:
-               Leafs.append(minPath[0])
-          Edges.append(minPath)
-          spanTree.addEdges({minPath:paths[minPath]})
-          pathCost+=paths[minPath]
-     print(spanTree)
-     print(f"Path Cost : {pathCost}")
-     return spanTree, pathCost
-
-
-
-     
-print(graph)
-print("\n"*2)
-Prims(graph, "A")
-
-
 def find_set(parent, sets):
      if sets[parent] != parent:
           sets[parent] = find_set(sets[parent], sets)
