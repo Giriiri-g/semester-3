@@ -14,9 +14,10 @@ int main(){
         }
     else{
 		wait(NULL);
-		if(fork()){ // square child
+		if(!fork()){ // square child
 			printf("Label -> SQUARE PID -> %d PPID -> %d\n", getpid(), getppid());
 			printf("Area of square is %d and perimeter is %d\n", (a*a), (4 * a));
 		}
+		else{wait(NULL);}
     } // order is always circle -> square
     return 0;}
