@@ -94,11 +94,48 @@ def Dijkstra(Graph, source):
                     continue
                if min_dist[Node] + Graph.Edge(Node, vertex) < dist[vertex]:
                     dist[vertex] = min_dist[Node] + Graph.Edge(Node, vertex)
-          Node = min(dist, key= lambda k: dist[k])
+          Node = min(dist, key=dist.get)
           min_dist[Node] = dist.pop(Node)
 
 
      return min_dist
 
 print(Dijkstra(graph, 'S'))
-     
+
+
+## [test]
+graph = {
+    'A': {'B': 2, 'C': 3, 'D': 1},
+    'B': {'D': 2},
+    'C': {'E': 1, 'D': 3},
+    'D': {'E': 2},
+    'E': {},
+    'S': {'A': 1, 'B': 5},
+}
+
+def dijkstra(graph, start):
+    cost = {node: float('inf') for node in graph}
+    cost[start] = 0
+    visited = set()
+
+    while len(visited) < len(graph):
+        unvisited_nodes = [i for i in cost if i not in visited]
+        current_node = min(unvisited_nodes, key=cost.get)
+        visited.add(current_node)
+        for neighbor in graph[current_node]:
+            if cost[current_node] + graph[current_node][neighbor] < cost[neighbor]:
+                cost[neighbor] = cost[current_node] + graph[current_node][neighbor]
+    return cost
+
+result = dijkstra(graph, 'S')
+print(result)
+
+
+
+
+
+
+
+
+
+

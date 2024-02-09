@@ -13,6 +13,8 @@
 
 4. Write a function to find the inverse of a sparse matrix if it is invertible
 
+
+
 Block Matrix Representation
 
 5. Implement a class to represent a block matrix. The matrix should be divided into square blocks.
@@ -57,28 +59,58 @@ Off-diagonal Blocks:
  """
 
 class SparseMatrix:
-     def __init__(self, rows, cols, nzs):
-          self._data = [[rows, cols, nzs]]
-          self._nzs = nzs
+     def __init__(self, rows, cols):
+          self._data = [[rows, cols, 0]]
 
-     def __setitem(self, key, value):
-          if len(self._data)+1==self._nzs:
-               print("Insertion Limit Reached: No other elements can be added")
-               return
-          else:
-               self._data.append([key[0], key[1], value])
-               self._data = sorted(self._data)
+     def __setitem__(self, key, value):
+          if (key[0] > self._data[0][0]-1) or (key[1] > self._data[0][1]-1):
+               print(f"Invalid Indexing: {key} for size of {tuple(self._data[0][:2])}")
+          data = [[0 for i in range(self._data[0][1])] for i in range(self._data[0][0])]
+          for i in self._data[1:]:
+               data[i[0]][i[1]] = i[2]
+          if data[key[0]][key[1]] == 0:
+               self._data[0][2]+=1
+          del data
+          self._data.append([key[0], key[1], value])
+          header = self._data[0]
+          data = sorted(self._data[1:])
+          self._data = [header]
+          for i in data:
+               self._data.append(i)
+          
+
+     def __getitem__(self, key):
+          if (key[0] > self._data[0][0]-1) or (key[1] > self._data[0][1]-1):
+               print(f"Invalid Indexing: {key} for size of {(self._data[0][0]-1, self._data[0][1]-1)}")
+               return None
+          for i in self._data:
+               if (i[0], i[1]) == key:
+                    return i[2]
+          return 0
+
      def __add__(self, other):
           if self._data[0][:2] == other._data[0][:2]:
-               data = [self._data[0]]
+               data = self._data[0]
                selfdata = set(tuple(i) for i in self._data[1:])
                otherdata = set(tuple(i) for i in other._data[1:])
                newinstance = SparseMatrix(self._data[0][0], self._data[0][1], len(selfdata.union(otherdata)))
+               newinstance[tuple(data[:2])] = data[2]
                for i in sorted(selfdata.union(otherdata)):
                     newinstance[i[:2]] = i[2]
+               return newinstance
           else:
                print(f"Dimension Error: the Dimensions ({self._data[0][0]}, {self._data[0][1]}) and ({other._data[0][0]}, {other._data[0][1]}) doesn't match")
 
+     def __str__(self):
+          res=""
+          data = [[0 for i in range(self._data[0][1])] for i in range(self._data[0][0])]         #[[0]*self._data[0][1]]*self._data[0][0]
+          for i in self._data[1:]:
+               data[i[0]][i[1]] = i[2]
+          for i in data:
+               for j in i:
+                    res+="{:>5}".format(j)
+               res+="\n"
+          return res[:-1]
 
 
 
