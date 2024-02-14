@@ -4,16 +4,29 @@ b = [1; 1; 1];
 x = zeros(3, 1);
 r = b;
 d = r;
-threshold = 0.0001;
+threshold = 0.005;
+max_iterations = 1000;
 xprev = x;
 iteration = 1;
-while true
+while iteration <= max_iterations
     a = (r'*r)/(d'*A*d);
+    
+    % Check for division by zero or very small values
+    if abs(a) < eps
+        disp('Skipping iteration: Division by zero or very small value.');
+        iteration = iteration + 1;
+        continue;
+    end
+    
     xprev = x;
     x = x + a*d;
-    if abs(sum(xprev) - sum(x)) < threshold
+    
+    r_norm = norm(r); % Calculate the norm of the residual vector
+    
+    if r_norm < threshold
         break
     end
+    
     rk_1 = r;
     r = r - a*A*d;
     beta = (r'*r)/(rk_1'*rk_1);
