@@ -1,154 +1,85 @@
+class SparseMatrix:
+    def __init__(self, rows, cols):
+        self.__data = [[rows, cols, 0]]
 
+    def __setitem__(self, key, value):
+        if (key[0] > self.__data[0][0]-1) or (key[1] > self.__data[0][1]-1):
+            print(f"Invalid Indexing: {key} for size of {tuple(self.__data[0][:2])}")
+        if self[key] == 0:
+            self.__data[0][2]+=1
+            self.__data.append([key[0], key[1], value])
+            header = self.__data[0]
+            data = sorted(self.__data[1:])
+            self.__data = [header]
+            for i in data:
+                self.__data.append(i)
+        else:
+            header = self.__data[0]
+            self.__data = [[i[0], i[1], value] if tuple(i[:2]) == key else i for i in self.__data[1:]]
+            self.__data.insert(0, header)
+          
 
-def bfs(graph, source):
-     visited = set()
-     traversal = []
-     queue = [source]
-     
-     while queue:
-          node = queue.pop(0)
-          if node not in visited:
-               traversal.append(node)
-               visited.add(node)
-               queue.extend([i for i in graph[node] if i not in visited])
-     return traversal
+    def __getitem__(self, key):
+        if (key[0] > self.__data[0][0]-1) or (key[1] > self.__data[0][1]-1):
+            print(f"Invalid Indexing: {key} for size of {(self.__data[0][0]-1, self.__data[0][1]-1)}")
+            return None
+        for i in self.__data[1:]:
+            if (i[0], i[1]) == key:
+                return i[2]
+        return 0
 
-graph = {
-    'A': {'B', 'C'},
-    'B': {'A', 'D', 'E'},
-    'C': {'A', 'F'},
-    'D': {'B'},
-    'E': {'B', 'F'},
-    'F': {'C', 'E'}
-}
-print(bfs(graph, "A"))
-
-## [subcode]
-
-
-def dfs(graph, source):
-     visited = set(source)
-     traversal = [source]
-     stack = [source]
-
-     while stack:
-          if [i for i in graph[stack[-1]] if i not in visited] == []:
-               stack.pop(-1)
-               if stack:
-                    traversal.append(stack[-1])
-          else:
-               unvisited = [i for i in graph[stack[-1]] if i not in visited]
-               visited.add(unvisited[0])
-               traversal.append(unvisited[0])
-               stack.append(unvisited[0])
+    def __add__(self, other):
+        if self.__data[0][:2] == other.__data[0][:2]:
+            header = self.__data[0]
+            newinstance = SparseMatrix(header[0], header[1])
                
-     return traversal
+            for i in self.__data[1:]:
+                newinstance[(i[0], i[1])] = i[2]
+            for i in other.__data[1:]:
+                newinstance[(i[0], i[1])] = newinstance[(i[0], i[1])] + i[2]
+            return newinstance
+        else:
+            print(f"Dimension Error: the Dimensions ({self.__data[0][0]}, {self.__data[0][1]}) and ({other.__data[0][0]}, {other.__data[0][1]}) doesn't match")
+
+    def __str__(self):
+        res=""
+        data = [[0 for i in range(self.__data[0][1])] for i in range(self.__data[0][0])]         #[[0]*self.__data[0][1]]*self.__data[0][0]
+        for i in self.__data[1:]:
+            data[i[0]][i[1]] = i[2]
+        for i in data:
+            for j in i:
+                res+="{:>5}".format(j)
+            res+="\n"
+        return res[:-1]
+
+    def display(self):
+        print("+-----+-----+-----+-----+")
+        print("| Ind | Row | Col | Val |")
+        print("+-----+-----+-----+-----+")
+        for i, val in enumerate(self.__data):
+            if i==0:
+                print("| {:<3} | {:<3} | {:<3} | {:<3} |".format(i+1, val[0], val[1], val[2]))
+                print("+-----+-----+-----+-----+")
+                continue
+            print("| {:<3} | {:<3} | {:<3} | {:<3} |".format(i+1, val[0]+1, val[1]+1, val[2]))
+        print("+-----+-----+-----+-----+")
 
 
-graph = {
-    'A': {'B', 'C'},
-    'B': {'A', 'D', 'E'},
-    'C': {'A', 'F'},
-    'D': {'B'},
-    'E': {'B', 'F'},
-    'F': {'C', 'E'}
-}
-print(dfs(graph, "A"))
-## [subcode]
 
+sp = SparseMatrix(5, 5)
+sp[(1, 2)] = 3
+sp[(4, 1)] = 1
+sp[(2, 0)] = 4
+sp[(3, 3)] = 12
+sp2 = SparseMatrix(5, 5)
+sp2[(1, 3)] = 5
+sp2[(4, 1)] = 12
+sp2[(2, 0)] = 3
+sp2[(3, 4)] = 8
+sp2[(3, 1)] = 46
+sp2[(2, 2)] = 9
 
-
-def dijkstra(graph, source):
-     visited = set()
-     dist = {node:float('inf') for node in graph}
-     dist[source] = 0
-
-     while len(visited)<len(graph):
-          unvisited = [i for i in graph if i not in visited]
-          node = min(unvisited, key=dist.get)
-          visited.add(node)
-
-          for child in graph[node]:
-               if dist[node] + graph[node][child] < dist[child]:
-                    dist[child] = dist[node] + graph[node][child]
-     return dist
-
-graph = {
-    'A': {'B': 2, 'C': 3, 'D': 1},
-    'B': {'D': 2},
-    'C': {'E': 1, 'D': 3},
-    'D': {'E': 2},
-    'E': {},
-    'S': {'A': 1, 'B': 5},
-}
-
-print(dijkstra(graph, 'S'))
-
-## [subcode]
-
-
-def bellmanford(graph, source):
-     dist = {node:float('inf') for node in graph}
-     dist[source] = 0
-
-     for i in range(len(graph)-1):
-          for n1 in graph:
-               for n2 in graph[n1]:
-                    if dist[n1] + graph[n1][n2] < dist[n2]:
-                         dist[n2] = dist[n1] + graph[n1][n2]
-     return dist
-
-
-graph = {
-    'A': {'B': 2, 'C': 3, 'D': 1},
-    'B': {'D': 2},
-    'C': {'E': 1, 'D': 3},
-    'D': {'E': 2},
-    'E': {},
-    'S': {'A': 1, 'B': 5},
-}
-
-print(bellmanford(graph, 'S'))
-
-
-dic = {
-'A':{'B':6, 'C':4, 'D':5},
-'B':{'E':-1},
-'C':{'E':3, 'B':-2},
-'D':{'C':-2, 'F':-1},
-'E':{'F':3},
-'F':{},
-}
-print(bellmanford(dic, 'A'))
-
-## [subcode]
-
-def prim(graph, source):
-    mst = []
-    visited = set()
-    cost = 0
-    heap = [(0, source)]
-    while heap:
-        weight, node = heap.pop(0)
-        if node not in visited:
-            visited.add(node)
-            cost += weight
-            mst.append((node, weight))
-            for i in graph[node]:
-                if i not in visited:
-                    heap.append((graph[node][i], i))
-                    heap.sort()
-    return mst, cost
-
-dic = {
-     'A': {'B': 5, 'D': 2},
-     'B': {'A': 5, 'C': 4, 'D': 3, 'E': 5, 'F': 6},
-     'C': {'B': 4, 'F': 3},
-     'D': {'A': 2, 'B': 3, 'E': 7, 'G': 6, 'H':8},
-     'E': {'B': 5, 'D': 7, 'F': 1, 'H': 3},
-     'F': {'B': 6, 'C': 3, 'E': 1, 'H': 4, 'I': 4},
-     'G': {'D': 6, 'H': 4},
-     'H': {'D': 8, 'E': 3, 'F': 4, 'G': 4, 'I': 2},
-     'I': {'F': 4, 'H': 2}
-}
-print(prim(dic, 'A'))
+sp3 = sp + sp2
+sp.display()
+sp2.display()
+sp3.display()
