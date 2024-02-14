@@ -153,13 +153,11 @@ class SparseMatrix:
                matrix[i], matrix[max_row] = matrix[max_row], matrix[i]
                identity[i], identity[max_row] = identity[max_row], identity[i]
 
-               # Make the diagonal element 1
                scalar = 1.0 / matrix[i][i]
                for j in range(n):
                     matrix[i][j] *= scalar
                     identity[i][j] *= scalar
 
-               # Make other elements in the column zero
                for j in range(n):
                     if i != j:
                          scalar = matrix[j][i]
@@ -240,46 +238,58 @@ class BlockMatrix:
                     print()
                 print()
                 
-    def conformal_decomposition(self):
-        diagonal_blocks = [[[0] * self.block_size for _ in range(self.block_size)] for _ in range(self.num_blocks)]
-        off_diagonal_blocks = [[[0] * self.block_size for _ in range(self.block_size)] for _ in range(self.num_blocks ** 2)]
+def conformal_decomposition(matrix):
+     length = len(matrix)
+     if length != len(matrix[0]):
+          print(f"Invalid Dimension Error: Expected a square matrix but a Matrix({length}x{len(matrix[0])}) was given.")
+          return None, None
+     diamat = [[0]*length for i in range(length)]
+     offdiamat = [[0]*length for i in range(length)]
 
-        for i in range(self.num_blocks):
-            for j in range(self.num_blocks):
-                if i == j:
-                    for k in range(self.block_size):
-                        for l in range(self.block_size):
-                            diagonal_blocks[i][k][l] = self.blocks[i * self.num_blocks + j][k][l]
-                else:
-                    for k in range(self.block_size):
-                        for l in range(self.block_size):
-                            off_diagonal_blocks[i * self.num_blocks + j][k][l] = self.blocks[i * self.num_blocks + j][k][l]
-
-        return diagonal_blocks, off_diagonal_blocks
+     for i in range(length):
+          for j in range(length):
+               if i == j:
+                    diamat[i][j] = matrix[i][j]
+               else:
+                    offdiamat[i][j] = matrix[i][j]
+     return diamat, offdiamat
 
 
 
 
 matrix = BlockMatrix(4, 2)
 
-# Insert values into the matrix
 value = 1
 for i in range(4):
     for j in range(4):
         matrix.insert(i, j, value)
         value += 1
 
-# Perform conformal decomposition
-diagonal_blocks, off_diagonal_blocks = matrix.conformal_decomposition()
 
-# Display the diagonal blocks
-print("Diagonal Blocks:")
-for block in diagonal_blocks:
-    for row in block:
-        print(" ".join(map(str, row)))
+print("Block Matrix:")
+matrix.display()
 
-# Display the off-diagonal blocks
-print("\nOff-diagonal Blocks:")
-for block in off_diagonal_blocks:
-    for row in block:
-        print(" ".join(map(str, row)))
+
+mat = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+
+print("Conformal Decomposition matrix:")
+for i in mat:
+     for j in i:
+          print("{:>5}".format(j), end="")
+     print()
+
+
+diamat, offdiamat = conformal_decomposition(mat)
+
+print("Diagonal Matrix: ")
+for i in diamat:
+     for j in i:
+          print("{:>5}".format(j), end="")
+     print()
+
+print("Off-Diagonal Matrix: ")
+for i in offdiamat:
+     for j in i:
+          print("{:>5}".format(j), end="")
+     print()
