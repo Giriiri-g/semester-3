@@ -1,0 +1,24 @@
+A = [1 2 3 ; 2 4 6; 7 8 9];
+b = [1; 1; 1];
+
+x = zeros(3, 1);
+r = b;
+d = r;
+threshold = 0.0001;
+xprev = x;
+
+while true
+    a = (r'*r)/(d'*A*d);
+    xprev = x;
+%    x = x + a*p;
+%    if abs(sum(xprev) - sum(x)) < threshold
+%        break
+%    end
+    x = x + a*d;
+    rk_1 = r;
+    r = r - a*A*d;
+    beta = (r'*r)/(rk_1'*rk_1);
+    p = r + beta*d;
+end
+
+disp(x);
